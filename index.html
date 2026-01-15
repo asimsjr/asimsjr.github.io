@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Andy Sims - Director of Operations specializing in Business Systems & Process Automation. I build integrated platforms that transform how companies operate.">
+    <title>Andy Sims | Business Systems & Process Automation</title>
+    <style>
+        /* =====================================================
+           CSS VARIABLES & RESET
+           ===================================================== */
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2d5a87;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --text-lighter: #94a3b8;
+            --bg: #f8fafc;
+            --bg-alt: #f1f5f9;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* =====================================================
+           TYPOGRAPHY
+           ===================================================== */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; }
+
+        p { margin-bottom: 1rem; }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover { color: var(--accent-hover); }
+
+        /* =====================================================
+           LAYOUT
+           ===================================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0;
+        }
+
+        .label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+
+        /* =====================================================
+           NAVIGATION
+           ===================================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        /* Logo Styles */
+		.logo {
+			display: flex;
+			flex-direction: column;
+			line-height: 1.1;
+		}
+
+		.logo-main {
+			font-family: Verdana, sans-serif;
+			font-size: 1.4rem;
+			font-weight: 700;
+			color: var(--primary);
+		}
+
+		.logo-bracket {
+			color: #f59e0b;
+		}
+
+		.logo-name {
+			color: #1e293b;
+		}
+
+		.logo-sub {
+			font-family: Verdana, sans-serif;
+			font-size: 0.7rem;
+			font-weight: 400;
+			color: #64748b;
+			letter-spacing: 0.15em;
+			padding-left: 1.85em;
+		}
+
+		/* White version for dark backgrounds */
+		.hero .logo-name,
+		.hero .logo-sub {
+			color: white;
+		}
+
+		.hero .logo-sub {
+			color: rgba(255,255,255,0.8);
+		}
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        /* =====================================================
+           HERO SECTION
+           ===================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #000000 0%, #2d3644 100%);
+            color: var(--white);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* =====================================================
+           ABOUT SECTION
+           ===================================================== */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .about-content h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* =====================================================
+           SERVICES SECTION
+           ===================================================== */
+        .services {
+            background: var(--bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+		/* =====================================================
+		   HOW I WORK SECTION
+		   ===================================================== */
+		.approach {
+			background: var(--white);
+		}
+
+		.approach-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+			gap: 2rem;
+		}
+
+		@media (max-width: 768px) {
+			.approach-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		.approach-card {
+			display: flex;
+			gap: 1.25rem;
+			padding: 1.5rem;
+			background: var(--bg);
+			border-radius: var(--radius);
+			transition: transform 0.2s;
+		}
+
+		.approach-card:hover {
+			transform: translateX(8px);
+		}
+
+		.approach-number {
+			flex-shrink: 0;
+			width: 48px;
+			height: 48px;
+			background: linear-gradient(135deg, var(--warning), #d97706);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: var(--white);
+		}
+
+		.approach-content h3 {
+			margin-bottom: 0.5rem;
+			font-size: 1.1rem;
+		}
+
+		.approach-content p {
+			color: var(--text-light);
+			font-size: 0.95rem;
+			margin-bottom: 0;
+			line-height: 1.6;
+		}
+		
+        /* =====================================================
+           DASHBOARD DEMO SECTION
+           ===================================================== */
+        .demo {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .demo .section-header h2 {
+            color: var(--white);
+        }
+
+        .demo .section-header p {
+            color: var(--text-lighter);
+        }
+
+        .dashboard-container {
+            background: var(--bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-sync {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .sync-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .dashboard-tab {
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dashboard-tab:hover {
+            color: var(--accent);
+            background: var(--bg);
+        }
+
+        .dashboard-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .dashboard-content {
+            padding: 1.5rem;
+        }
+
+        .dashboard-panel {
+            display: none;
+        }
+
+        .dashboard-panel.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow);
+        }
+
+        .kpi-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .kpi-change {
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .kpi-change.positive { color: var(--success); }
+        .kpi-change.negative { color: var(--danger); }
+
+        /* Charts */
+        .chart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .chart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow);
+        }
+
+        .chart-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        /* CSS Bar Chart */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            width: 80px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: right;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 24px;
+            background: var(--bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            padding-left: 0.5rem;
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .bar-fill.blue { background: linear-gradient(90deg, var(--accent), var(--primary)); }
+        .bar-fill.green { background: linear-gradient(90deg, var(--success), #059669); }
+        .bar-fill.orange { background: linear-gradient(90deg, var(--warning), #d97706); }
+
+        /* CSS Line Chart */
+        .line-chart {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .line-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--accent), var(--primary));
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+            position: relative;
+        }
+
+        .line-bar:hover {
+            opacity: 0.8;
+        }
+
+        .line-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-light);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .line-bar:hover::after {
+            opacity: 1;
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+
+        .chart-labels span {
+            font-size: 0.7rem;
+            color: var(--text-lighter);
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+			color: var(--text);
+        }
+
+        .data-table th {
+            background: var(--bg);
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .data-table tr:hover {
+            background: var(--bg);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge.paid { background: #d1fae5; color: #065f46; }
+        .status-badge.pending { background: #fef3c7; color: #92400e; }
+        .status-badge.overdue { background: #fee2e2; color: #991b1b; }
+        .status-badge.active { background: #dbeafe; color: #1e40af; }
+
+        /* =====================================================
+           EXPERIENCE SECTION
+           ===================================================== */
+        .experience {
+            background: var(--white);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 8px;
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 2px;
+            }
+        }
+
+        .timeline-content {
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-company {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .timeline-description ul {
+            margin-top: 0.5rem;
+            padding-left: 1.25rem;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* =====================================================
+           CASE STUDY SECTION
+           ===================================================== */
+        .case-study {
+            background: var(--bg);
+        }
+
+        .case-study-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .case-study-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .case-study-header h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study-header p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0;
+        }
+
+        .case-study-body {
+            padding: 2rem;
+        }
+
+        .case-study-section {
+            margin-bottom: 2rem;
+        }
+
+        .case-study-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-section h4 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .case-study-section p {
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* =====================================================
+           CONTACT SECTION
+           ===================================================== */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg);
+            border-radius: var(--radius);
+            transition: transform 0.2s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        .contact-card a {
+            font-weight: 600;
+        }
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+        footer {
+            background: var(--dark);
+            color: var(--text-lighter);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* =====================================================
+           UTILITIES
+           ===================================================== */
+        .text-center { text-align: center; }
+        .mb-0 { margin-bottom: 0; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-logo">
+			<div class="logo">
+				<div class="logo-main"><span class="logo-bracket">&lt;</span><span class="logo-name">asimsjr</span><span class="logo-bracket">/&gt;</span></div>
+				<div class="logo-sub">andy sims jr</div>
+			</div>
+		</a>
+            <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" onclick="closeNav()">About</a></li>
+                <li><a href="#services" onclick="closeNav()">What I Build</a></li>
+				<li><a href="#approach" onclick="closeNav()">How I Work</a></li>
+                <li><a href="#demo" onclick="closeNav()">Dashboard Demo</a></li>
+                <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+                <li><a href="#case-study" onclick="closeNav()">Case Study</a></li>
+                <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="label">Director of Operations</span>
+                <h1>Andy Sims</h1>
+                <p class="hero-subtitle">Business Systems & Process Automation</p>
+                <p class="hero-description">
+                    I help companies replace broken systems with ones that actually work.<br>
+                    Most businesses outgrow their store bought software — I build integrated systems that 
+                    connect the dots so leadership can actually see what's happening in their business.
+                </p>
+                <div class="hero-cta">
+                    <a href="#demo" class="btn btn-primary">See Dashboard Demo</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="label">About Me</span>
+                    <h2>Building Systems <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;That Actually Work</h2>
+                    <p>
+                        With 20+ years of experience spanning business ownership, operations
+						management, and enterprise software, I've developed a unique
+						ability to see both the business problem and the technical solution.
+                    </p>
+                    <p>
+                        I don't just implement software — I architect integrated systems that transform 
+                        how companies operate. The blueprint is what matters: how data is structured,
+						how departments connect, where the single source of truth lives.
+						Modern development methods let me deliver complex platforms without requiring
+						a large team, but the architecture is what makes it work.
+                    </p>
+                    <p>
+                        My background includes 7 years as a Software Engineer at Cisco, multiple 
+                        business ventures, and most recently serving as Director of Operations where I 
+                        built a complete operations dashboard from scratch. I build systems that incorporate
+						invoicing, project tracking, vendor management, and cash flow forecasting. All integrated in one system.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">20+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1</div>
+                        <div class="stat-label">Architect (End-to-End)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$20M+</div>
+                        <div class="stat-label">Tracked Sales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">Custom Built for You</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">What I Build</span>
+                <h2>Systems Designed Around How You Actually Work</h2>
+                <p>Companies don't need another off-the-shelf tool that doesn't fit. Most software forces you to change your process to match the tool — and still leaves gaps. I build custom systems designed around how your business actually works, connecting invoicing, scheduling, project tracking, and financials so data flows across departments and leadership can see what's happening without chasing down spreadsheets.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-no-axes-column-icon lucide-chart-no-axes-column"><path d="M5 21v-6"/><path d="M12 21V3"/><path d="M19 21V9"/></svg>
+					</div>
+                    <h3>Operations Dashboards</h3>
+                    <p>
+                        Real-time visibility into your business. I build integrated dashboards that 
+                        pull data from multiple sources into a single source of truth.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-workflow-icon lucide-workflow"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+					</div>
+                    <h3>QuickBooks Integration</h3>
+                    <p>
+                        Connect your accounting data to operational workflows. Automated syncing, 
+                        financial reporting, and cash flow forecasting built on live QBO data.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-down-icon lucide-trending-up-down"><path d="M14.828 14.828 21 21"/><path d="M21 16v5h-5"/><path d="m21 3-9 9-4-4-6 6"/><path d="M21 8V3h-5"/></svg>
+					</div>
+                    <h3>Cash Flow Forecasting</h3>
+                    <p>
+                        See months into the future. Automated projections based on scheduled 
+                        payments, receivables, and historical patterns.
+                    </p>
+				</div>
+                <div class="service-card">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>
+					</div>
+					<h3>Invoicing & Billing Systems</h3>
+					<p>
+						Custom invoicing, billing, and claims processing built around your workflows. 
+						No more forcing your process to fit the software.
+					</p>
+				</div>
+				<div class="service-card">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+					</div>
+					<h3>Scheduling & Operations</h3>
+					<p>
+						Scheduling, project tracking, and vendor management connected to your financial data. 
+						Everything in sync, nothing falls through the cracks.
+					</p>
+				</div>
+                <div class="service-card">
+                    <div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-ccw-icon lucide-refresh-ccw"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+					</div>
+                    <h3>Legacy System Replacement</h3>
+                    <p>
+                        Stuck with outdated software? I design and build modern replacements 
+                        that actually fit your business processes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	<!-- How I Work Section -->
+	<section class="approach" id="approach">
+		<div class="container">
+			<div class="section-header">
+				<span class="label">How I Work</span>
+				<h2>Custom Systems, Built Right</h2>
+				<p>Every business is different. Your system should be too. Off-the-shelf software forces you into someone else's workflow and still leaves gaps. I start with understanding how your business actually runs — how departments connect, where things fall through the cracks, what decisions you're trying to make. Then I design the architecture and build a system around that reality, not the other way around.</p>
+			</div>
+			<div class="approach-grid">
+				<div class="approach-card">
+					<div class="approach-number">1</div>
+					<div class="approach-content">
+						<h3>Discovery First</h3>
+						<p>I don't start with code. I start with understanding your business — how work flows between departments, where things fall through the cracks, what processes are held together by spreadsheets and workarounds.</p>
+					</div>
+				</div>
+				<div class="approach-card">
+					<div class="approach-number">2</div>
+					<div class="approach-content">
+						<h3>Architecture is Everything</h3>
+						<p>The blueprint matters more than the code. How your data is structured, how modules connect, where the single source of truth lives — this is what separates a system that scales from one that falls apart.</p>
+					</div>
+				</div>
+				<div class="approach-card">
+					<div class="approach-number">3</div>
+					<div class="approach-content">
+						<h3>Systems That Run Your Business</h3>
+						<p>I build platforms that handle real work — invoicing, billing, scheduling, claims, project tracking. And because everything shares the same foundation, data flows across departments instead of getting stuck in silos.</p>
+					</div>
+				</div>
+				<div class="approach-card">
+					<div class="approach-number">4</div>
+					<div class="approach-content">
+						<h3>Operations Experience Built In</h3>
+						<p>I've been the Director of Operations. I understand how departments need to connect, where handoffs break down, and what information leadership actually needs to make decisions.</p>
+					</div>
+				</div>
+				<div class="approach-card">
+					<div class="approach-number">5</div>
+					<div class="approach-content">
+						<h3>Design That Works From Day One</h3>
+						<p>With a design background from SCAD, I build systems that are intuitive out of the gate. No $400 training fees. No "it technically works but nobody understands it." Clean interfaces your team can use immediately.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+    <!-- Dashboard Demo Section -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Interactive Demo</span>
+                <h2>Example Operations Dashboard</h2>
+                <p>Click through the tabs to explore the different modules. This is a simplified demo of the systems I build.</p>
+            </div>
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <span class="dashboard-title">Operations Dashboard</span>
+                    <div class="dashboard-sync">
+                        <span class="sync-indicator"></span>
+                        <span>QuickBooks Synced • 31 sec ago</span>
+                    </div>
+                </div>
+                <div class="dashboard-tabs">
+                    <div class="dashboard-tab active" onclick="showPanel('overview')">Overview</div>
+                    <div class="dashboard-tab" onclick="showPanel('projects')">Projects</div>
+                    <div class="dashboard-tab" onclick="showPanel('vendors')">Vendors</div>
+                    <div class="dashboard-tab" onclick="showPanel('invoices')">Invoices</div>
+                    <div class="dashboard-tab" onclick="showPanel('forecast')">Cash Forecast</div>
+                </div>
+                <div class="dashboard-content">
+                    
+                    <!-- Overview Panel -->
+                    <div class="dashboard-panel active" id="panel-overview">
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-label">Cash Balance</div>
+                                <div class="kpi-value">$284,392</div>
+                                <div class="kpi-change positive">↑ 12.4% from last month</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Accounts Receivable</div>
+                                <div class="kpi-value">$412,850</div>
+                                <div class="kpi-change negative">↓ 3.2% from last month</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Accounts Payable</div>
+                                <div class="kpi-value">$198,420</div>
+                                <div class="kpi-change positive">↓ 8.1% from last month</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Active Projects</div>
+                                <div class="kpi-value">15</div>
+                                <div class="kpi-change positive">+2 this month</div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-card">
+                                <div class="chart-title">Monthly Revenue (Last 12 Months)</div>
+                                <div class="line-chart" id="revenueChart"></div>
+                                <div class="chart-labels">
+                                    <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+                                </div>
+                            </div>
+                            <div class="chart-card">
+                                <div class="chart-title">Revenue by Category</div>
+                                <div class="bar-chart">
+                                    <div class="bar-row">
+                                        <span class="bar-label">New Build</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill blue" style="width: 85%;">$1.2M</div>
+                                        </div>
+                                    </div>
+                                    <div class="bar-row">
+                                        <span class="bar-label">Retrofits</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill green" style="width: 62%;">$890K</div>
+                                        </div>
+                                    </div>
+                                    <div class="bar-row">
+                                        <span class="bar-label">Service</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill orange" style="width: 38%;">$540K</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects Panel -->
+                    <div class="dashboard-panel" id="panel-projects">
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-label">Total Project Value</div>
+                                <div class="kpi-value">$6.2M</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Billed to Date</div>
+                                <div class="kpi-value">$4.1M</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Remaining</div>
+                                <div class="kpi-value">$2.1M</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Avg Margin</div>
+                                <div class="kpi-value">24.3%</div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Active Projects</div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Client</th>
+                                        <th>Contract Value</th>
+                                        <th>% Complete</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Warehouse Expansion</td>
+                                        <td>ABC Logistics</td>
+                                        <td>$892,000</td>
+                                        <td>78%</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Office Complex B</td>
+                                        <td>Metro Development</td>
+                                        <td>$1,245,000</td>
+                                        <td>45%</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Distribution Center</td>
+                                        <td>FastShip Inc</td>
+                                        <td>$2,100,000</td>
+                                        <td>22%</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Retail Renovation</td>
+                                        <td>Smith Properties</td>
+                                        <td>$340,000</td>
+                                        <td>92%</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Vendors Panel -->
+                    <div class="dashboard-panel" id="panel-vendors">
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-label">Total Payables</div>
+                                <div class="kpi-value">$198,420</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Due This Week</div>
+                                <div class="kpi-value">$42,800</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Overdue</div>
+                                <div class="kpi-value">$8,250</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Active Vendors</div>
+                                <div class="kpi-value">34</div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Payment Priority Queue</div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Vendor</th>
+                                        <th>Amount Due</th>
+                                        <th>Due Date</th>
+                                        <th>Project</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Steel Supply Co</td>
+                                        <td>$24,500</td>
+                                        <td>Jan 15</td>
+                                        <td>Distribution Center</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Concrete Plus</td>
+                                        <td>$18,300</td>
+                                        <td>Jan 18</td>
+                                        <td>Office Complex B</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Electric Systems Inc</td>
+                                        <td>$8,250</td>
+                                        <td>Jan 10</td>
+                                        <td>Warehouse Expansion</td>
+                                        <td><span class="status-badge overdue">Overdue</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HVAC Specialists</td>
+                                        <td>$12,400</td>
+                                        <td>Jan 22</td>
+                                        <td>Retail Renovation</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Invoices Panel -->
+                    <div class="dashboard-panel" id="panel-invoices">
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-label">Total Receivables</div>
+                                <div class="kpi-value">$412,850</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Current (0-30)</div>
+                                <div class="kpi-value">$298,200</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">31-60 Days</div>
+                                <div class="kpi-value">$86,400</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">60+ Days</div>
+                                <div class="kpi-value">$28,250</div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Outstanding Invoices</div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice #</th>
+                                        <th>Client</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>INV-2024-089</td>
+                                        <td>ABC Logistics</td>
+                                        <td>$124,500</td>
+                                        <td>Jan 5</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV-2024-088</td>
+                                        <td>Metro Development</td>
+                                        <td>$86,400</td>
+                                        <td>Dec 20</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV-2024-085</td>
+                                        <td>FastShip Inc</td>
+                                        <td>$210,000</td>
+                                        <td>Dec 15</td>
+                                        <td><span class="status-badge paid">Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV-2024-082</td>
+                                        <td>Smith Properties</td>
+                                        <td>$28,250</td>
+                                        <td>Nov 18</td>
+                                        <td><span class="status-badge overdue">Overdue</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Forecast Panel -->
+                    <div class="dashboard-panel" id="panel-forecast">
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-label">Current Cash</div>
+                                <div class="kpi-value">$284,392</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Week 4 Forecast</div>
+                                <div class="kpi-value">$312,800</div>
+                                <div class="kpi-change positive">↑ $28,408</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Week 13 Forecast</div>
+                                <div class="kpi-value">$445,200</div>
+                                <div class="kpi-change positive">↑ $160,808</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-label">Week 26 Forecast</div>
+                                <div class="kpi-value">$628,500</div>
+                                <div class="kpi-change positive">↑ $344,108</div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">26-Week Cash Flow Projection</div>
+                            <div class="line-chart" id="forecastChart"></div>
+                            <div class="chart-labels">
+                                <span>Week 1</span>
+                                <span>Week 7</span>
+                                <span>Week 13</span>
+                                <span>Week 19</span>
+                                <span>Week 26</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Experience</span>
+                <h2>Career History</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - 2025</div>
+                        <h3 class="timeline-title">Director of Operations, Marketing & IT</h3>
+                        <div class="timeline-company">Multi-State Steel Building Contractor</div>
+                        <div class="timeline-description">
+                            <p>Led operations for a construction company managing $20M+ in projects across 15+ active projects.</p>
+                            <ul>
+                                <li>Built complete operations dashboard from scratch in 4 months</li>
+                                <li>Integrated QuickBooks Online via API for real-time financial data</li>
+                                <li>Designed 28-table database with 7 integrated modules</li>
+                                <li>Implemented 26-week cash flow forecasting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2015 - 2024</div>
+                        <h3 class="timeline-title">Business Owner & Operations Consultant</h3>
+                        <div class="timeline-company">Various Ventures</div>
+                        <div class="timeline-description">
+                            <p>Founded and operated multiple businesses while providing operations consulting to small and mid-size companies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2008 - 2015</div>
+                        <h3 class="timeline-title">Software Test Engineer</h3>
+                        <div class="timeline-company">Cisco Systems</div>
+                        <div class="timeline-description">
+                            <p>7 years of enterprise software testing experience in a Fortune 500 environment.</p>
+                            <ul>
+                                <li>System flows and data modeling</li>
+                                <li>API design and testing</li>
+                                <li>Quality assurance and version control</li>
+                                <li>Cross-functional team collaboration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Education</div>
+                        <h3 class="timeline-title">Bachelor of Fine Arts, Computer Art</h3>
+                        <div class="timeline-company">Savannah College of Art and Design (SCAD)</div>
+                        <div class="timeline-description">
+                            <p>A formal design education shapes how I approach every system. It's not enough to make something that works — it has to be something people can actually use. Clean interfaces, logical workflows, and intuitive navigation aren't afterthoughts. They're built in from the start.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section class="case-study" id="case-study">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Case Study</span>
+                <h2>Operations Dashboard Build</h2>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-header">
+                    <h3>From Spreadsheet Chaos to Single Source of Truth</h3>
+                    <p>How I built a complete operations platform in 4 months using modern development methods</p>
+                </div>
+                <div class="case-study-body">
+                    <div class="case-study-section">
+                        <h4>The Challenge</h4>
+                        <p>
+                            A multi-state construction company was running critical financial operations on 
+                            spreadsheets. Project managers juggled multiple files to track costs. Owners waited 
+                            days for answers to basic cash flow questions. There was no single source of truth.
+                        </p>
+                    </div>
+                    <div class="case-study-section">
+                        <h4>The Solution</h4>
+                        <p>
+                            I designed and built a comprehensive operations dashboard that integrates directly 
+                            with QuickBooks Online. The system features a 28-table PostgreSQL database, 7 integrated 
+                            modules, and 26-week cash flow forecasting — all syncing in under 30 seconds.
+                        </p>
+                    </div>
+                    <div class="case-study-section">
+                        <h4>My Role</h4>
+                        <p>
+                            I served as architect and project lead — defining requirements, designing the database schema, and specifying API contracts. I owned the project end-to-end, from architecture through production deployment.
+                        </p>
+                    </div>
+                    <div class="case-study-section">
+                        <h4>Results</h4>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-value">4 mo</div>
+                                <div class="result-label">Build Time</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">28</div>
+                                <div class="result-label">Database Tables</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">7</div>
+                                <div class="result-label">Modules</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">30 sec</div>
+                                <div class="result-label">Sync Time</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">26 wk</div>
+                                <div class="result-label">Forecast Range</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">$20M+</div>
+                                <div class="result-label">Revenue Tracked</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Get In Touch</span>
+                <h2>Let's Talk About Your Systems</h2>
+                <p>You know your business better than any software company. Let's build a system around that knowledge. I'd love to hear from you. No commitment, just a conversation about what's possible.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+					</div>
+                    <h3>Phone</h3>
+                    <p><a href="tel:404-229-4838">404-229-4838</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+					</div>
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://linkedin.com/in/andysimsjr" target="_blank">linkedin.com/in/andysimsjr</a></p>
+                </div>
+				<div class="contact-card">
+					<div class="contact-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-at-sign-icon lucide-at-sign"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>
+					</div>
+					<h3>Email</h3>
+					<p><a href="mailto:asimsjr@gmail.com">asimsjr@gmail.com</a></p>
+				</div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+					</div>
+                    <h3>Location</h3>
+                    <p>Monroe, Georgia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Andy Sims. Built with purpose.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function closeNav() {
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // Dashboard Tab Switching
+        function showPanel(panelName) {
+            // Update tabs
+            document.querySelectorAll('.dashboard-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update panels
+            document.querySelectorAll('.dashboard-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.getElementById('panel-' + panelName).classList.add('active');
+
+            // Animate charts if showing forecast
+            if (panelName === 'forecast') {
+                animateForecastChart();
+            }
+            if (panelName === 'overview') {
+                animateRevenueChart();
+            }
+        }
+
+        // Revenue Chart Animation
+        function animateRevenueChart() {
+            const data = [65, 72, 68, 85, 92, 78, 95, 88, 102, 96, 110, 118];
+            const maxVal = Math.max(...data);
+            const chart = document.getElementById('revenueChart');
+            chart.innerHTML = '';
+            
+            data.forEach((val, i) => {
+                const bar = document.createElement('div');
+                bar.className = 'line-bar';
+                bar.style.height = '0%';
+                bar.setAttribute('data-value', '$' + val + 'K');
+                chart.appendChild(bar);
+                
+                setTimeout(() => {
+                    bar.style.height = (val / maxVal * 100) + '%';
+                }, i * 50);
+            });
+        }
+
+        // Forecast Chart Animation
+        function animateForecastChart() {
+            const data = [284, 298, 312, 335, 358, 372, 395, 412, 428, 445, 468, 492, 510, 535, 552, 568, 582, 595, 602, 608, 612, 618, 622, 625, 627, 628];
+            const maxVal = Math.max(...data);
+            const chart = document.getElementById('forecastChart');
+            chart.innerHTML = '';
+            
+            data.forEach((val, i) => {
+                const bar = document.createElement('div');
+                bar.className = 'line-bar';
+                bar.style.height = '0%';
+                bar.style.background = 'linear-gradient(180deg, #10b981, #059669)';
+                bar.setAttribute('data-value', '$' + val + 'K');
+                chart.appendChild(bar);
+                
+                setTimeout(() => {
+                    bar.style.height = ((val - 250) / (maxVal - 250) * 100) + '%';
+                }, i * 30);
+            });
+        }
+
+        // Initialize charts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            animateRevenueChart();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
